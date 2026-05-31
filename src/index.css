@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================
+   NODE ANIMATIONS
+========================================== */
+
+/* Bounce when node is added */
+@keyframes nodeBounce {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.3); opacity: 1; }
+  80%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+/* Pulse ring when visiting */
+@keyframes pulseRing {
+  0%   { r: 22; opacity: 1; }
+  100% { r: 38; opacity: 0; }
+}
+
+/* Ripple on destination reached */
+@keyframes ripple {
+  0%   { r: 20; opacity: 0.8; stroke-width: 4; }
+  100% { r: 50; opacity: 0;   stroke-width: 1; }
+}
+
+/* Glow outline on final path nodes */
+@keyframes glowPulse {
+  0%   { filter: drop-shadow(0 0 4px #f97316) drop-shadow(0 0 8px #f97316); }
+  50%  { filter: drop-shadow(0 0 12px #f97316) drop-shadow(0 0 24px #f97316); }
+  100% { filter: drop-shadow(0 0 4px #f97316) drop-shadow(0 0 8px #f97316); }
+}
+
+.node-bounce {
+  animation: nodeBounce 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+}
+
+.node-glow {
+  animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+/* ==========================================
+   EDGE ANIMATIONS
+========================================== */
+
+/* Flowing dash when relaxing */
+@keyframes flowDash {
+  0%   { stroke-dashoffset: 20; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* Glow stroke on shortest path */
+@keyframes edgeGlow {
+  0%   { filter: drop-shadow(0 0 3px #f97316) drop-shadow(0 0 6px #f97316); }
+  50%  { filter: drop-shadow(0 0 8px #f97316) drop-shadow(0 0 16px #f97316); }
+  100% { filter: drop-shadow(0 0 3px #f97316) drop-shadow(0 0 6px #f97316); }
+}
+
+/* Draw animation when edge created */
+@keyframes drawEdge {
+  0%   { stroke-dashoffset: 1000; opacity: 0; }
+  100% { stroke-dashoffset: 0;    opacity: 1; }
+}
+
+.edge-draw {
+  stroke-dasharray: 1000;
+  animation: drawEdge 0.6s ease forwards;
+}
+
+.edge-flow {
+  stroke-dasharray: 8 4;
+  animation: flowDash 0.4s linear infinite;
+}
+
+.edge-glow {
+  animation: edgeGlow 1.5s ease-in-out infinite;
+}
+
+/* ==========================================
+   DISTANCE TABLE ANIMATIONS
+========================================== */
+
+@keyframes flashUpdate {
+  0%   { background-color: rgba(234, 179, 8, 0.5); }
+  100% { background-color: transparent; }
+}
+
+@keyframes numberPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.4); color: #facc15; }
+  100% { transform: scale(1); }
+}
+
+.flash-update {
+  animation: flashUpdate 0.8s ease forwards;
+}
+
+.number-pop {
+  display: inline-block;
+  animation: numberPop 0.4s ease forwards;
+}
+
+/* ==========================================
+   STEP LOG ANIMATIONS
+========================================== */
+
+@keyframes slideIn {
+  0%   { transform: translateX(-20px); opacity: 0; }
+  100% { transform: translateX(0);     opacity: 1; }
+}
+
+.step-slide-in {
+  animation: slideIn 0.3s ease forwards;
+}
+
+/* ==========================================
+   BUTTON ANIMATIONS
+========================================== */
+
+@keyframes buttonPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+  70%  { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+.button-pulse {
+  animation: buttonPulse 1.2s ease infinite;
+}
+
+/* ==========================================
+   CONFETTI ANIMATION
+========================================== */
+
+@keyframes confettiFall {
+  0%   { transform: translateY(-10px) rotate(0deg);   opacity: 1; }
+  100% { transform: translateY(80px)  rotate(720deg); opacity: 0; }
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  animation: confettiFall 1.2s ease forwards;
+}
+
+/* ==========================================
+   FINAL RESULT ANIMATIONS
+========================================== */
+
+@keyframes resultFlash {
+  0%   { opacity: 0; transform: scale(0.8); }
+  60%  { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.result-flash {
+  animation: resultFlash 0.6s ease forwards;
+}
+
+/* ==========================================
+   GENERAL TRANSITIONS
+========================================== */
+
+@keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* Smooth color transitions for SVG elements */
+circle, line, path {
+  transition: fill 0.4s ease, stroke 0.4s ease, stroke-width 0.3s ease;
+}
+
+/* ==========================================
+   MOBILE RESPONSIVE
+========================================== */
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #111827;
+}
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 2px;
+}
+
+/* Touch friendly tap targets */
+@media (max-width: 768px) {
+  .mobile-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 50vh;
+    overflow-y: auto;
+    z-index: 50;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .mobile-canvas {
+    height: 55vh !important;
+  }
+}
