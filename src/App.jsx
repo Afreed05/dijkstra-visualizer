@@ -104,7 +104,7 @@ export default function App() {
 
         {/* Left: Canvas */}
         <div className="flex-1 flex flex-col gap-4 min-w-0">
-          <div className="flex-1 min-h-0" style={{ minHeight: "420px" }}>
+          <div className="flex-1 min-h-0" style={{ minHeight: "520px", maxHeight: "65vh" }}>
             <GraphCanvas
               nodes={nodes}
               edges={edges}
@@ -207,7 +207,7 @@ export default function App() {
         {/* Mobile Canvas Tab */}
         {mobileTab === "canvas" && (
           <div className="flex flex-col flex-1 gap-3 p-3 overflow-hidden">
-            <div className="flex-1 mobile-canvas">
+            <div style={{ height: "60vh" }}>
               <GraphCanvas
                 nodes={nodes}
                 edges={edges}

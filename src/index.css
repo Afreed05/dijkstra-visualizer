@@ -208,6 +208,12 @@ circle, line, path {
   }
 
   .mobile-canvas {
-    height: 55vh !important;
+  height: 60vh !important;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .mobile-canvas {
+    height: 50vh !important;
   }
+}
 }
