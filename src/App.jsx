@@ -5,6 +5,7 @@ import DistanceTable from "./components/DistanceTable";
 import StepLog from "./components/StepLog";
 import { runDijkstra, findTop5Paths } from "./algorithms/dijkstra";
 import { useAnimation } from "./hooks/useAnimation";
+import ComplexityPanel from "./components/ComplexityPanel";
 
 export default function App() {
   const [nodes, setNodes] = useState([]);
@@ -165,6 +166,12 @@ export default function App() {
             onPathSelect={setSelectedPathIndex}
           />
           <DistanceTable nodes={nodes} currentStep={currentStep} />
+          <ComplexityPanel
+  nodes={nodes}
+  edges={edges}
+  currentStep={currentStep}
+  isFinished={isFinished}
+/>
           <StepLog steps={steps} currentStepIndex={currentStepIndex} />
         </div>
       </div>
@@ -181,6 +188,7 @@ export default function App() {
             { id: "controls", label: "🎮 Controls" },
             { id: "table",    label: "📊 Table"    },
             { id: "log",      label: "📝 Log"      },
+            { id: "complexity", label: "📈 Complexity" },
           ].map((tab) => (
             <button
               key={tab.id}
@@ -272,6 +280,13 @@ export default function App() {
         {mobileTab === "log" && (
           <div className="flex-1 overflow-y-auto p-3">
             <StepLog steps={steps} currentStepIndex={currentStepIndex} />
+          </div>
+        )}
+
+        {/* Mobile Complexity Tab */}
+        {mobileTab === "complexity" && (
+          <div className="flex-1 overflow-y-auto p-3">
+            <ComplexityPanel nodes={nodes} edges={edges} currentStep={currentStep} isFinished={isFinished} />
           </div>
         )}
 
